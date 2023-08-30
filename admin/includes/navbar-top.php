@@ -1,3 +1,7 @@
+<?php
+include_once('../config/app.php');
+?>
+
 <nav class="sb-topnav navbar navbar-expand navbar-primary bg-primary">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3 text-white" href="index.html">PHP OOPS ADMIN</a>
@@ -12,16 +16,30 @@
     </form>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>
-            <?= $_SESSION['auth_user']['user_fname']." ".$_SESSION['auth_user']['user_lname'] ?>
-        </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="../login.php">Logout</a></li>
-            </ul>
+        <?php if(isset($_SESSION['authenticated'])): ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>
+                <?= $_SESSION['auth_user']['user_fname']." ".$_SESSION['auth_user']['user_lname'] ?>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                        <form action="" method="POST">
+                            <button type="submit" name="logout_btn" class="dropdown-item">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        <?php else : ?>
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('../login.php') ?>">Login</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('../register.php') ?>">Register</a>
+        </li>
+        <?php endif; ?>
+      </ul>
     </ul>
 </nav>

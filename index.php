@@ -1,6 +1,6 @@
 <?php
 include('config/app.php');
-include('codes\authentication_code.php');
+include('codes/authentication_code.php');
 include('includes/header.php');
 include('includes/navbar.php');
 ?>

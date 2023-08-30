@@ -1,5 +1,5 @@
 <?php
-include_once('config\app.php');
+include_once('config/app.php');
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow ">
