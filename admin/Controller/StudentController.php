@@ -89,6 +89,88 @@ class StudentController
             return false;
         }
     }
+
+    public function indexs()
+    {
+        $teacherQuery = "SELECT * FROM teachers";
+        $result = $this->conn->query($teacherQuery);
+        if($result->num_rows > 0)
+        {
+            return $result;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function edits($id)
+    {
+        $teacher_id = validateInput($this->conn, $id);
+        $teacherQuery = "SELECT * FROM teachers WHERE id='$teacher_id' LIMIT 1";
+        $result = $this->conn->query($teacherQuery);
+        if($result->num_rows == 1)
+        {
+            $data = $result->fetch_assoc();
+            return $data;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function creates($inputData)
+    {
+        $data = "'" . implode( "','", $inputData) . "'";
+        // echo $data;
+
+        $sutdentQuery = "INSERT INTO teachers (fullname,email,`subject`,phone) VALUES ($data)";
+        $result = $this->conn->query($sutdentQuery);
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function updates($inputData, $id)
+    {
+        $student_id = validateInput($this->conn, $id);
+        $fullname = $inputData['fullname'];
+        $email = $inputData['email'];
+        $subject = $inputData['subject'];
+        $phone = $inputData['phone'];
+        
+        $teacherUpdateQuery = "UPDATE teachers SET fullname='$fullname', email='$email', `subject`='$subject', phone='$phone' WHERE id='$student_id' LIMIT 1";
+        $result = $this->conn->query($teacherUpdateQuery);
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function deletes($id)
+    {
+        $teacher_id = validateInput($this->conn,$id);
+        $teacherDeleteQuery = "DELETE FROM teachers WHERE id='$teacher_id' LIMIT 1";
+        $result = $this->conn->query($teacherDeleteQuery);
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
 ?>

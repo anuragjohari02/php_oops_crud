@@ -14,7 +14,7 @@
             <?php include('../message.php'); ?>
             <div class="card">
                 <div class="card-header">
-                    <h4>Student Add</h4>
+                    <h4>Teacher Add</h4>
                 </div>
                 <div class="card-body">
                     <form action="codes/student-code.php" method="POST">
@@ -27,8 +27,8 @@
                             <input type="email" name="email" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="">Course</label>
-                            <input type="text" name="course" class="form-control" required>
+                            <label for="">Subject</label>
+                            <input type="text" name="subject" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label for="">Phone No.</label>
@@ -44,7 +44,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" name="save_student" class="btn btn-primary">Save Student</button>
+                            <button type="submit" name="save_teacher" class="btn btn-primary">Save Teacher</button>
                         </div>
                     </form>
                 </div>
