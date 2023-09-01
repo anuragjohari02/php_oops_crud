@@ -8,9 +8,9 @@ class RegisterController
         $this->conn = $db->conn;
     }
 
-    public function registeration($fname,$lname,$email,$password)
+    public function registeration($fname,$lname,$email,$password,$role_as)
     {
-        $register_query = "INSERT INTO `users` (`fname`,`lname`,`email`,`password`) VALUES ('$fname','$lname','$email','$password')";
+        $register_query = "INSERT INTO `users` (`fname`,`lname`,`email`,`password`,`role_as`) VALUES ('$fname','$lname','$email','$password','$role_as')";
         $result = $this->conn->query($register_query);
         return $result;
     }

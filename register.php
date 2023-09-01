@@ -42,6 +42,15 @@ include('includes/navbar.php');
                                 <input type="password" name="confirm_password" placeholder="Enter Password" class="form-control">
                             </div>
                             <div class="form-group mb-3">
+                                <label for="">Role As</label>
+                                <select name="role_as" id="role_as" class="form-control" required>
+                                    <option selected disabled value="Select Role">-- Select Role --</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="teacher">Teacher</option>
+                                    <option value="student">Student</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
                                 <button type="submit" name="register_btn" class="btn btn-primary">Submit</button>
                             </div>
 

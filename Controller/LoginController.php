@@ -30,7 +30,7 @@ class LoginController
             'user_id' => $data['id'],
             'user_fname' => $data['fname'],
             'user_lname' => $data['lname'],
-            'user_email' => $data['email']
+            'user_email' => $data['email'],
         ];
     }
 

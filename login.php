@@ -40,7 +40,6 @@ include('includes/navbar.php');
     </div>
 </div>
 
-
 <?php
 include('includes/footer.php');
 ?>

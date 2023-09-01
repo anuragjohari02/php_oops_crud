@@ -35,15 +35,6 @@
                             <input type="number" name="phone" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="">Role As</label>
-                            <select name="role-as" id="role-as" class="form-control" required>
-                                <option selected disabled value="Select Role">-- Select Role --</option>
-                                <option value="admin">Admin</option>
-                                <option value="teacher">Teacher</option>
-                                <option value="student">Student</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
                             <button type="submit" name="save_teacher" class="btn btn-primary">Save Teacher</button>
                         </div>
                     </form>

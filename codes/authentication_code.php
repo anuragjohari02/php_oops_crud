@@ -21,11 +21,17 @@ if(isset($_POST['login_btn']))
     $checkLogin = $auth->userLogin($email,$password);
     if($checkLogin)
     {
-        if($_SESSION['auth_role'] == '1')
+        if($_SESSION['auth_role'] == 'admin')
         {
             redirect('Logged In Successfully','admin/index.php');
         }
+        elseif($_SESSION['auth_role'] == 'teacher')
+        {
+            redirect('Logged In Successfully','admin/teacher-index.php');
+        }
         else
+
+
         {
             redirect('Logged In Successfully','index.php');
         }
@@ -42,6 +48,7 @@ if(isset($_POST['register_btn'])){
     $email = validateInput($db->conn,$_POST['email']);
     $password = validateInput($db->conn,$_POST['password']);
     $confirm_password = validateInput($db->conn,$_POST['confirm_password']);
+    $role_as = validateInput($db->conn,$_POST['role_as']);
 
     $register = new RegisterController;
     $result_password = $register->confirmPassword($password,$confirm_password);
@@ -53,7 +60,7 @@ if(isset($_POST['register_btn'])){
         }
         else
         {
-            $register_query = $register->registeration($fname,$lname,$email,$password);
+            $register_query = $register->registeration($fname,$lname,$email,$password,$role_as);
             if($register_query)
             {
                 redirect("Registered Successfully","login.php");
