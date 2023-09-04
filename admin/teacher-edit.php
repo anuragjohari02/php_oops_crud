@@ -22,14 +22,14 @@
                     <?php 
                     if(isset($_GET['id']))
                     {
-                        $student_id = validateInput($db->conn,$_GET['id']);
+                        $teacher_id = validateInput($db->conn,$_GET['id']);
                         $student = new StudentController;
-                        $result = $student->edits($student_id);
+                        $result = $student->edits($teacher_id);
                         if($result)
                         {
                             ?>
                         <form action="codes/student-code.php" method="POST">
-                            <input type="hidden" name="student_id" value="<?= $result['id'] ?>">
+                            <input type="hidden" name="teacher_id" value="<?= $result['id'] ?>">
                             <div class="mb-3">
                                 <label for="">Full Name</label>
                                 <input type="text" name="fullname" class="form-control" value="<?= $result['fullname'] ?>" required>
@@ -47,7 +47,7 @@
                                 <input type="number" name="phone" class="form-control" value="<?= $result['phone'] ?>" required>
                             </div>
                             <div class="mb-3">
-                                <button type="submit" name="update_student" class="btn btn-primary">Update Teacher</button>
+                                <button type="submit" name="update_teacher" class="btn btn-primary">Update Teacher</button>
                             </div>
                         </form>
                             <?php

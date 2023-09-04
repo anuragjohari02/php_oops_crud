@@ -22,8 +22,8 @@ if(isset($_POST['save_student']))
     $inputData = [
         'fullname' => validateInput($db->conn,$_POST['fullname']),
         'email' => validateInput($db->conn,$_POST['email']),
-        'phone' => validateInput($db->conn,$_POST['phone']),
         'course' => validateInput($db->conn,$_POST['course']),
+        'phone' => validateInput($db->conn,$_POST['phone']),
     ];
 
     $student = new StudentController;
@@ -44,15 +44,15 @@ if(isset($_POST['update_student']))
     $inputData = [
         'fullname' => validateInput($db->conn,$_POST['fullname']),
         'email' => validateInput($db->conn,$_POST['email']),
-        'phone' => validateInput($db->conn,$_POST['phone']),
         'course' => validateInput($db->conn,$_POST['course']),
+        'phone' => validateInput($db->conn,$_POST['phone']),
     ];
 
     $student = new StudentController;
     $result = $student->update($inputData, $id);
     if($result)
     {
-        redirect("Teaacher Updated Successfully","admin/teacher-view.php");
+        redirect("Teacher Updated Successfully","admin/teacher-view.php");
     }
     else
     {
@@ -103,6 +103,49 @@ if(isset($_POST['save_teacher']))
     }
 }
 
+if(isset($_POST['saveTeacher']))
+{
+    $inputData = [
+        'fullname' => validateInput($db->conn,$_POST['fullname']),
+        'email' => validateInput($db->conn,$_POST['email']),
+        'subject' => validateInput($db->conn,$_POST['subject']),
+        'phone' => validateInput($db->conn,$_POST['phone']),
+    ];
+
+    $student = new StudentController;
+    $result = $student->creates($inputData);
+    if($result)
+    {
+        redirect("Teacher Added Successfully","admin/add-teacher.php");
+    }
+    else
+    {
+        redirect("Something Went Wrong","admin/add-teacher.php");
+    }
+}
+
+if(isset($_POST['updateStudent']))
+{
+    $id = validateInput($db->conn,$_POST['teacher_id']);
+    $inputData = [
+        'fullname' => validateInput($db->conn,$_POST['fullname']),
+        'email' => validateInput($db->conn,$_POST['email']),
+        'phone' => validateInput($db->conn,$_POST['phone']),
+        'subject' => validateInput($db->conn,$_POST['subject']),
+    ];
+
+    $student = new StudentController;
+    $result = $student->updates($inputData, $id);
+    if($result)
+    {
+        redirect("Teacher Updated Successfully","admin/view-teacher.php");
+    }
+    else
+    {
+        redirect("Something Went Wrong","admin/view-teacher.php");
+    }
+}
+
 if(isset($_POST['deleteTeacher']))
 {
     $id = validateInput($db->conn,$_POST['deleteTeacher']);
@@ -115,6 +158,21 @@ if(isset($_POST['deleteTeacher']))
     else
     {
         redirect("Something Went Wrong","admin/teacher-view.php");
+    }
+}
+
+if(isset($_POST['teacherDelete']))
+{
+    $id = validateInput($db->conn,$_POST['teacherDelete']);
+    $student = new StudentController;
+    $result = $student->deletes($id);
+    if($result)
+    {
+        redirect("Teacher Deleted Successfully","admin/view-teacher.php");
+    }
+    else
+    {
+        redirect("Something Went Wrong","admin/view-teacher.php");
     }
 }
 

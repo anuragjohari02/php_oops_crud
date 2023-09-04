@@ -18,7 +18,9 @@ class AuthenticationController
         if($result->num_rows == 1)
         {
             return true;
-        }else{
+        }
+        else
+        {
             redirect("You are not authorized as admin","index.php");
         }
     }
@@ -31,7 +33,9 @@ class AuthenticationController
         if($result->num_rows == 1)
         {
             return true;
-        }else{
+        }
+        else
+        {
             redirect("You are not authorized as admin","index.php");
         }
     }
@@ -62,7 +66,9 @@ class AuthenticationController
             {
                 $data = $result->fetch_assoc();
                 return $data;
-            }else{
+            }
+            else
+            {
                 redirect("Something Went Wrong","login.php");
             }
         }

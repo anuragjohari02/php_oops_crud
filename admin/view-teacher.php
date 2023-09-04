@@ -1,5 +1,5 @@
 <?php
-    include_once('../config\app.php');
+    include_once('../config/app.php');
     include_once('../Controller/AuthenticationController.php');
 
     $authenticated = new AuthenticationController;
@@ -33,8 +33,8 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $students = new StudentController;
-                                    $result = $students->indexs(); 
+                                    $teachers = new StudentController;
+                                    $result = $teachers->indexs(); 
                                     if($result)
                                     {
                                         foreach($result as $row)
@@ -47,11 +47,11 @@
                                                 <td><?= $row['phone'] ?></td>
                                                 <td><?= $row['subject'] ?></td>
                                                 <td>
-                                                    <a href="edit-teacher.php.php?id=<?= $row['id']; ?>" class="btn btn-success">Edit</a>
+                                                    <a href="edit-teacher.php?id=<?= $row['id']; ?>" class="btn btn-success">Edit</a>
                                                 </td>
                                                 <td>
                                                     <form action="codes/student-code.php" method="POST">
-                                                        <button type="submit" name="deleteTeacher" value="<?= $row['id'] ?>" class="btn btn-danger">Delete</button>
+                                                        <button type="submit" name="teacherDelete" value="<?= $row['id'] ?>" class="btn btn-danger">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>

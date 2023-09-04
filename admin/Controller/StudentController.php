@@ -125,8 +125,8 @@ class StudentController
         $data = "'" . implode( "','", $inputData) . "'";
         // echo $data;
 
-        $sutdentQuery = "INSERT INTO teachers (fullname,email,`subject`,phone) VALUES ($data)";
-        $result = $this->conn->query($sutdentQuery);
+        $teacherQuery = "INSERT INTO teachers (fullname,email,`subject`,phone) VALUES ($data)";
+        $result = $this->conn->query($teacherQuery);
         if($result)
         {
             return true;
@@ -139,13 +139,13 @@ class StudentController
 
     public function updates($inputData, $id)
     {
-        $student_id = validateInput($this->conn, $id);
+        $teacher_id = validateInput($this->conn, $id);
         $fullname = $inputData['fullname'];
         $email = $inputData['email'];
         $subject = $inputData['subject'];
         $phone = $inputData['phone'];
         
-        $teacherUpdateQuery = "UPDATE teachers SET fullname='$fullname', email='$email', `subject`='$subject', phone='$phone' WHERE id='$student_id' LIMIT 1";
+        $teacherUpdateQuery = "UPDATE teachers SET fullname='$fullname', email='$email', `subject`='$subject', phone='$phone' WHERE id='$teacher_id' LIMIT 1";
         $result = $this->conn->query($teacherUpdateQuery);
         if($result)
         {

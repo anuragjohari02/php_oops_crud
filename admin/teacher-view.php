@@ -33,8 +33,8 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $students = new StudentController;
-                                    $result = $students->indexs(); 
+                                    $teachers = new StudentController;
+                                    $result = $teachers->indexs(); 
                                     if($result)
                                     {
                                         foreach($result as $row)

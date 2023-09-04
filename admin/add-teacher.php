@@ -35,7 +35,7 @@
                             <input type="number" name="phone" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" name="save_teacher" class="btn btn-primary">Save Teacher</button>
+                            <button type="submit" name="saveTeacher" class="btn btn-primary">Save Teacher</button>
                         </div>
                     </form>
                 </div>
