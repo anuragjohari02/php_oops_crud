@@ -31,7 +31,7 @@
                                     <th>Delete</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tableBody">
                                 <?php
                                     $students = new StudentController;
                                     $result = $students->index(); 

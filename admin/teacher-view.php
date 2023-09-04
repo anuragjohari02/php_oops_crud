@@ -9,6 +9,8 @@
     include('includes/header.php');
 ?>
 
+
+
 <div class="container-fluid px-4">
     <div class="row mt-4">
         <div class="col-md-12">
@@ -31,7 +33,7 @@
                                     <th>Delete</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tableBody">
                                 <?php
                                     $teachers = new StudentController;
                                     $result = $teachers->indexs(); 
