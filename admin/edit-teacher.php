@@ -67,6 +67,38 @@
         </div>
     </div>
 
+<!-- Multiple Select Checkbox Dropdown -->
+    <div class="container-fluid px-4 mt-3">
+        <h2>Select Students To Whom You Teach</h2>   
+        <form class="form-signin" method="post" id="register-form" action="codes/student-code.php">	
+            <input type="hidden" name="teacher_id" value="<?= $result['id'] ?>">
+            <div class="form-group">
+                <select id="assign_student" name="assign_student[]" multiple required>
+                    <?php
+                    $students = new StudentController;
+                    $result = $students->index();
+                    if ($result) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<option value="' . $row['id'] . '">' . $row['fullname'] . '</option>';
+                        }
+                    } else {
+                        echo "No Record Found";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary" name="student_assign" id="btn-submit">Submit</button> 
+            </div>
+
+            <div class="form-group mt-3">
+                <td>
+                    <a href="teacher-student-assign.php" class="btn btn-success">Assigned Student</a>
+                </td>
+            </div>
+        </form>
+    </div>
+
 </div>
 
 <?php

@@ -27,6 +27,7 @@
                                     <th>Email</th>
                                     <th>Phone No</th>
                                     <th>Subject</th>
+                                    <th>Assigned Student</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -46,6 +47,9 @@
                                                 <td><?= $row['email'] ?></td>
                                                 <td><?= $row['phone'] ?></td>
                                                 <td><?= $row['subject'] ?></td>
+                                                <td>
+                                                    <a href="teacher-student-assign.php" class="btn btn-primary">Assigned Student</a>
+                                                </td>
                                                 <td>
                                                     <a href="edit-teacher.php?id=<?= $row['id']; ?>" class="btn btn-success">Edit</a>
                                                 </td>
@@ -70,7 +74,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <?php

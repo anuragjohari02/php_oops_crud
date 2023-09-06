@@ -171,6 +171,91 @@ class StudentController
             return false;
         }
     }
+
+    public function assignStudentsToTeacher($teacher_id, $selectedStudents)
+    {
+        // Validate and sanitize input values
+        $teacher_id = validateInput($this->conn,$teacher_id);
+        $selectedStudents = array_map(function($student_id) {
+            return validateInput($this->conn, $student_id);
+        }, $selectedStudents);
+
+        // Delete existing assignments for the teacher
+        $deleteQuery = "DELETE FROM student_assign WHERE id='$teacher_id'";
+        $deleteResult = $this->conn->query($deleteQuery);
+
+        if (!$deleteResult) {
+            return false; // Failed to delete existing assignments
+        }
+
+        // Insert new assignments
+        $insertValues = [];
+        foreach ($selectedStudents as $student_id) {
+            $insertValues[] = "('$teacher_id', '$student_id')";
+        }
+
+        $insertQuery = "INSERT INTO student_assign (teacher_id, student_id) VALUES " . implode(", ", $insertValues);
+        $insertResult = $this->conn->query($insertQuery);
+
+        return $insertResult; // Return true if successfully inserted, false otherwise
+    }
+
+    // public function showAssignStudent()
+    // {
+    //     $assignStudent = "SELECT * FROM student_assign";
+    //     $result = $this->conn->query($assignStudent);
+    //     if($result->num_rows > 0)
+    //     {
+    //         return $result;
+    //     }
+    //     else
+    //     {
+    //         return false;
+    //     }
+    // }
+
+
+    public function deleteAssignedStudent($assignedStudentId) {
+        $assignedStudentId = validateInput($this->conn, $assignedStudentId);
+        
+        $deleteQuery = "DELETE FROM student_assign WHERE id='$assignedStudentId'";
+        $deleteResult = $this->conn->query($deleteQuery);
+        
+        if ($deleteResult) {
+            return true;
+        } else {
+            return false;
+        }
+     }    
+
+    public function getAssignedStudents($teacher_id)
+    {
+        // Validate and sanitize the teacher_id
+        $teacher_id = validateInput($this->conn, $teacher_id);
+
+        // Query to retrieve assigned students for the given teacher
+        $query = "SELECT students.fullname AS student_name
+                FROM student_assign
+                JOIN students ON student_assign.student_id = students.id
+                WHERE student_assign.teacher_id = '$teacher_id'";
+
+        $result = $this->conn->query($query);
+
+        if ($result->num_rows > 0) {
+            $assignedStudents = [];
+            while ($row = $result->fetch_assoc()) {
+                $assignedStudents[] = $row;
+            }
+            return $assignedStudents;
+        } else {
+            return false; // No assigned students found
+        }
+    }
+
 }
 
 ?>
+
+
+
+

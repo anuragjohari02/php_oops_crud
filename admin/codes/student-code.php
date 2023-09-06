@@ -176,4 +176,39 @@ if(isset($_POST['teacherDelete']))
     }
 }
 
+
+if(isset($_POST['student_assign'])) {
+    $teacher_id = validateInput($db->conn, $_POST['teacher_id']);
+    $selectedStudents = isset($_POST['assign_student']) ? $_POST['assign_student'] : [];
+
+    // Assign selected students to the teacher
+    $student = new StudentController;
+    $assignResult = $student->assignStudentsToTeacher($teacher_id, $selectedStudents);
+
+    if ($assignResult) {
+        // Successfully assigned students
+        redirect("<div class='alert alert-success'>Students assigned to the teacher successfully.</div>","admin/teacher-student-assign.php");
+    } else {
+        // Failed to assign students
+        redirect("<div class='alert alert-danger'>Failed to assign students to the teacher.</div>","admin/view-teacher.php");
+    }
+}
+
+if(isset($_POST['assignedStudentDelete'])) {
+    $assignedStudentId = validateInput($db->conn, $_POST['assignedStudentDelete']);
+    
+    // Call a method to delete the assigned student
+    $student = new StudentController;
+    $deleteResult = $student->deleteAssignedStudent($assignedStudentId);
+    
+    if ($deleteResult) {
+        // Successfully deleted the assigned student
+        redirect("Assigned Student Deleted Successfully", "admin/teacher-student-assign.php");
+    } else {
+        // Failed to delete the assigned student
+        redirect("Failed to Delete Assigned Student", "admin/teacher-student-assign.php");
+    }
+}
+
+
 ?>
